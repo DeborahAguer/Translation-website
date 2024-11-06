@@ -1,18 +1,8 @@
-require('dotenv').config();
-
-const environment = process.env.NODE_ENV || 'development';
-
-let envConfig;
-try {
-  envConfig = require(`./env/${environment}`);
-} catch (error) {
-  console.error(`Could not load config for ${environment}. Falling back to default.`);
-  envConfig = {}; // fallback or handle error
-}
+require('dotenv').config(); // Load environment variables from the .env file
 
 module.exports = {
-  ...envConfig,
-  MONGO_URI: process.env.MONGO_URI,
-  JWT_SECRET: process.env.JWT_SECRET,
-  SUPPORTED_LANGUAGES: ['kiswahili', 'dinka', 'english'],
+  // Directly use the environment variables loaded by dotenv
+  MONGO_URI: process.env.MONGO_URI,       // MongoDB URI
+  JWT_SECRET: process.env.JWT_SECRET,     // Secret for JWT authentication
+  SUPPORTED_LANGUAGES: ['kiswahili', 'dinka', 'english'], // Static values for supported languages
 };
